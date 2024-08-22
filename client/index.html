@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form >
-        <input type="text" placeholder="enter your name">
-        <input type="email" placeholder="enter your email">
-        <input type="password" placeholder="enter your password">
+    <form action="/submit" method = "POST">
+        <input type="text" placeholder="enter your name" name="name" id="name">
+        <input type="email" placeholder="enter your email" name="email" id="email">
+        <input type="password" placeholder="enter your password" name="password" id="password">
+        <input type="submit" name="submit" id="submit">
 
 
     </form>
