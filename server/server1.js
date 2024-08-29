@@ -7,7 +7,24 @@ const fs = require('fs');
 // const { parse } = require('path');
 const querystring = require('querystring')
 
+const{MongoClient} = require('mongodb')
+const client  = new MongoClient('mongodb://127.0.0.1:27017')
+
+async function connect(){
+  try {
+    await client.connect();
+    console.log("database connection established")
+  } catch (error) {
+    console.log("error",error)
+  }
+}
+connect();
+
 const server = http.createServer((req,res) =>{
+
+  let db = client.db("dms");
+  let collection = db.collection("users");
+
   
 
   // get the req url
@@ -47,6 +64,25 @@ const server = http.createServer((req,res) =>{
 
       console.log('name',datas.name);
       console.log('email',datas.email);
+
+      //save to a database
+
+      collection.insertOne({
+        name : datas.name,
+        email :datas.email,
+        password : datas.password
+      })
+
+      .then((message)=>{
+        console.log("message",message);
+        res.writeHead(201,{'Content-Type' : 'text/plain'})
+        res.end("user created successfully");
+      })
+      .catch((error)=>{
+        console.log("error",error);
+        res.writeHead(400,{'Content-Type' : 'text/plain'});
+        res.end(error.message ? error.message: "user creation failed");
+      })
     })
 
 
