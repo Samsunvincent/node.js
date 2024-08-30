@@ -58,22 +58,23 @@ const server = http.createServer((req,res) =>{
     res.end(fs.readFileSync('../client/script.js'));
     
   }
+  
  
   else if(parsed_url.pathname === '/submit' && req.method === 'POST'){
-   
-   console.log('reached here')
+    console.log('reached here')
     let body = '';
     req.on('data',(chunks) =>{
       console.log(chunks);
       body = body+chunks.toString();
+     
     });
     req.on('end',()=>{
       console.log('body',body)
       const datas = querystring.parse(body);
       console.log('datas',datas);
 
-      console.log('name',datas.name);
-      console.log('email',datas.email);
+      // console.log('name',datas.name);
+      // console.log('email',datas.email);
 
       //save to a database
 
