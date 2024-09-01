@@ -70,20 +70,30 @@ const server = http.createServer((req,res) =>{
     });
     req.on('end',()=>{
       console.log('body',body)
-      const datas = querystring.parse(body);
-      console.log('datas',datas);
+      let datas = JSON.parse(body);
+        console.log("datas : ",datas);
 
-      // console.log('name',datas.name);
-      // console.log('email',datas.email);
+        let name = datas.name;
+        let email = datas.email;
+        let password = datas.password;
+      // const datas = querystring.parse(body);
+      console.log('password',password);
+      console.log('name',name);
+      console.log('email',email);
 
+      //validation
+
+      // if(!name){
+      //   res.writeHead(400,{'Content-Type':"text/plain"});
+      //   res.end('invalid name');
+      //   return;
+      // }
       //save to a database
-
       collection.insertOne({
-        name : datas.name,
-        email :datas.email,
-        password : datas.password
+        name : datas.name ,
+        email : datas.email,
+        password : datas.password,
       })
-
       .then((message)=>{
         console.log("message",message);
         res.writeHead(201,{'Content-Type' : 'text/plain'})

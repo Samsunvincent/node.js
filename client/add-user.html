@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <form onsubmit="adduser(event)">
-        <input type="text" placeholder="enter your name" name="name" id="name">
-        <input type="email" placeholder="enter your email" name="email" id="email">
-        <input type="password" placeholder="enter your password" name="password" id="password">
-        <input type="submit" name="submit" id="submit">
+        <div class="name-section">
+            <input type="text" placeholder="enter your name" name="name" id="name">
+            <div id="name-error"></div>
+        </div>
+        <div class="email-section">
+            <input type="email" placeholder="enter your email" name="email" id="email">
+            <div id="email-error"></div>
+        </div>
+        <div class="password-section">
+            <input type="password" placeholder="enter your password" name="password" id="password">
+            <div id="password-error"></div>
+        </div>
+        <div>
+            <input type="submit" name="submit" id="submit">
+        </div>
     </form>
     <script src="./script.js"></script>
 </body>

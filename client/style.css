@@ -6,3 +6,6 @@ body{
     color:white;
 
 }
+#name-error,#email-error,#password-error{
+    color: red;
+}
