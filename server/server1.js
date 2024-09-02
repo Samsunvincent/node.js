@@ -108,6 +108,13 @@ const server = http.createServer((req,res) =>{
 
 
   }
+  else if(parsed_url.pathname === '/submit' && method === GET){
+
+  }
+  else if(parsed_url.pathname ===  '/get-user.html'){
+    res.writeHead(200,{'Content-Type' : 'text/html'});
+    res.end(fs.readFileSync('../client/get-user.html'))
+  }
  
 
   
